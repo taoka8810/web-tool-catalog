@@ -1,0 +1,14 @@
+@use "../globals/forward.scss" as *;
+
+.inner {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form {
+  margin: 20px 0;
+}
