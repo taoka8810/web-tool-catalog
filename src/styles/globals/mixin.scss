@@ -1,0 +1,7 @@
+$md: 800px;
+
+@mixin md {
+  @media screen and (max-width: ($md)) {
+    @content;
+  }
+}
