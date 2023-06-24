@@ -11,50 +11,28 @@ datasource db {
 }
 
 model Tool {
-  id               Int                @id @default(autoincrement())
-  name             String
-  icon             String
-  description      String
-  categoryId       Int
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  category         Category           @relation(fields: [categoryId], references: [id])
-  TagsOnTools      TagsOnTools[]
-  TagsOnCategories TagsOnCategories[]
+  id            Int           @id @default(autoincrement())
+  name          String
+  icon          String
+  description   String
+  categoryId    Int
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  category      Category      @relation(fields: [categoryId], references: [id])
+  subCategories SubCategory[]
 }
 
 model Category {
-  id               Int                @id @default(autoincrement())
-  name             String
-  slug             String
-  Tool             Tool[]
-  TagsOnCategories TagsOnCategories[]
+  id   Int    @id @default(autoincrement())
+  name String
+  slug String @unique
+  tool Tool[]
 }
 
-model Tag {
-  id               Int                @id @default(autoincrement())
-  name             String
-  slug             String
-  TagsOnTools      TagsOnTools[]
-  TagsOnCategories TagsOnCategories[]
-}
-
-model TagsOnTools {
-  toolId Int
-  tagId  Int
-  tool   Tool @relation(fields: [toolId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
-
-  @@id([toolId, tagId])
-}
-
-model TagsOnCategories {
-  categoryId Int
-  tagId      Int
-  toolId     Int?
-  category   Category @relation(fields: [categoryId], references: [id])
-  tag        Tag      @relation(fields: [tagId], references: [id])
-  Tool       Tool?    @relation(fields: [toolId], references: [id])
-
-  @@id([categoryId, tagId])
+model SubCategory {
+  id     Int    @id @default(autoincrement())
+  name   String
+  slug   String @unique
+  toolId Int?
+  tool   Tool?  @relation(fields: [toolId], references: [id])
 }
