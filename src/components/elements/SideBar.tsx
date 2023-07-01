@@ -24,6 +24,7 @@ export const SideBar: React.FC<SideBarProps> = (props) => {
         </button>
         {allCategories?.map((category) => (
           <button
+            key={category.id}
             className={
               props.selectedCategory === category
                 ? `${style.category} ${style.active}`

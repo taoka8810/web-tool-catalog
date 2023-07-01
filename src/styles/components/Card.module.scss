@@ -7,6 +7,7 @@
   background-color: #0f1317;
   line-height: 1.5;
   width: calc((100% - 130px) / 3);
+  text-decoration: none;
   cursor: pointer;
 
   @include md {

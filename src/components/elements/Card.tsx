@@ -1,21 +1,33 @@
 import Image from "next/image";
 import style from "~/styles/components/Card.module.scss";
+import useSWR from "swr";
 
-export const Card: React.FC = () => {
+type CardProps = {
+  name: string;
+  provider: string;
+  description: string;
+  icon: string;
+  url: string;
+};
+
+export const Card: React.FC<CardProps> = (props) => {
   return (
-    <article className={style.card}>
+    <a
+      className={style.card}
+      href={props.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div className={style.head}>
         <div className={style.icon}>
-          <Image src="/wordpress_logo.png" alt="logo" width={40} height={40} />
+          <img src="/wordpress_logo.png" alt="logo" width={40} height={40} />
         </div>
         <div>
-          <h2 className={style.toolname}>WordPress</h2>
-          <p className={style.provider}>by WordPress Foundation</p>
+          <h2 className={style.toolname}>{props.name}</h2>
+          <p className={style.provider}>{`by ${props.provider}`}</p>
         </div>
       </div>
-      <p className={style.description}>
-        世界で最も利用されているオープンソースのCMS
-      </p>
-    </article>
+      <p className={style.description}>{props.description}</p>
+    </a>
   );
 };

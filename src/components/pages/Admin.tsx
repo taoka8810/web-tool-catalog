@@ -1,6 +1,5 @@
 import { useState } from "react";
 import style from "~/styles/pages/Admin.module.scss";
-import { uploadImage } from "~/utils/storage";
 import { api } from "~/utils/api";
 import { Category } from "@prisma/client";
 
@@ -65,7 +64,7 @@ export const AdminPage: React.FC = () => {
           <input
             type="file"
             accept=".jpg,.png,.svg"
-            onChange={(e) => uploadImage(e).then((url) => setIconURL(url))}
+            // onChange={(e) => uploadImage(e).then((url) => setIconURL(url))}
             required
           />
         </label>
