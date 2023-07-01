@@ -11,28 +11,20 @@ datasource db {
 }
 
 model Tool {
-  id            Int           @id @default(autoincrement())
-  name          String
-  icon          String
-  description   String
-  categoryId    Int
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  category      Category      @relation(fields: [categoryId], references: [id])
-  subCategories SubCategory[]
+  id          Int      @id @default(autoincrement())
+  name        String
+  icon        String
+  description String
+  categoryId  Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  category    Category @relation(fields: [categoryId], references: [id])
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String
-  slug String @unique
-  tool Tool[]
-}
-
-model SubCategory {
-  id     Int    @id @default(autoincrement())
-  name   String
-  slug   String @unique
-  toolId Int?
-  tool   Tool?  @relation(fields: [toolId], references: [id])
+  id          Int    @id @default(autoincrement())
+  name        String
+  slug        String @unique
+  description String
+  tool        Tool[]
 }

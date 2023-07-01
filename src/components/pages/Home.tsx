@@ -12,8 +12,8 @@ export const HomePage: React.FC = () => {
           ウェブ開発に役立つサービスやツールを紹介するポータルサイト
         </p>
         <div className={style.list}>
-          {[...Array(30)].map(() => (
-            <Card />
+          {[...Array(30)].map((_, index) => (
+            <Card key={index} />
           ))}
         </div>
       </main>
