@@ -1,14 +1,13 @@
 // import { prisma } from "~/server/db";
 // import { createTRPCRouter, publicProcedure } from "../trpc";
 // import { z } from "zod";
-// import { Category, SubCategory } from "@prisma/client";
+// import { Category } from "@prisma/client";
 
 // export const toolRouter = createTRPCRouter({
 //   index: publicProcedure.query(async () => {
 //     return await prisma.tool.findMany({
 //       include: {
 //         category: true,
-//         subCategories: true,
 //       },
 //     });
 //   }),
@@ -19,7 +18,6 @@
 //         description: z.string(),
 //         icon: z.string(),
 //         category: z.any().transform((d) => d as Category),
-//         subCategories: z.any().transform((d) => d as SubCategory[]),
 //       })
 //     )
 //     .query(async ({ input }) => {
