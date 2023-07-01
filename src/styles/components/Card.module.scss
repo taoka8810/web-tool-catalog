@@ -1,0 +1,48 @@
+@use "../globals/forward.scss" as *;
+
+.card {
+  padding: 15px;
+  outline: 2px solid #171b21;
+  border-radius: 7px;
+  background-color: #0f1317;
+  line-height: 1.5;
+  width: calc((100% - 130px) / 3);
+  cursor: pointer;
+
+  @include md {
+    width: 100%;
+  }
+}
+
+.head {
+  display: flex;
+  gap: 20px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: white;
+
+  > img {
+    object-fit: cover;
+  }
+}
+
+.toolname {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.provider {
+  color: #abb5bf;
+  font-size: 14px;
+}
+
+.description {
+  margin-top: 20px;
+  color: #abb5bf;
+  font-size: 14px;
+}
