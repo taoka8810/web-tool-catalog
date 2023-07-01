@@ -2,6 +2,10 @@
   "compilerOptions": {
     "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
@@ -15,11 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    "noUncheckedIndexedAccess": true
   },
   "include": [
     ".eslintrc.cjs",
@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.cjs",
-    "**/*.mjs"
+    "**/*.mjs",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
