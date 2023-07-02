@@ -3,12 +3,12 @@ import style from "~/styles/components/SideBar.module.scss";
 import { api } from "~/utils/api";
 
 type SideBarProps = {
+  allCategories?: Category[];
   selectedCategory: Category | "all";
   onClickButton: (category: Category | "all") => void;
 };
 
 export const SideBar: React.FC<SideBarProps> = (props) => {
-  const allCategories = api.category.index.useQuery().data;
   return (
     <aside className={style.sidebar}>
       <div className={style.categories}>
@@ -22,7 +22,7 @@ export const SideBar: React.FC<SideBarProps> = (props) => {
         >
           ALL
         </button>
-        {allCategories?.map((category) => (
+        {props.allCategories?.map((category) => (
           <button
             key={category.id}
             className={

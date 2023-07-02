@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = (props) => {
     >
       <div className={style.head}>
         <div className={style.icon}>
-          <img src="/wordpress_logo.png" alt="logo" width={40} height={40} />
+          <img src={props.icon} alt="logo" width={35} height={35} />
         </div>
         <div>
           <h2 className={style.toolname}>{props.name}</h2>

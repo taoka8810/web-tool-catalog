@@ -3,12 +3,14 @@ import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
 import { Category } from "@prisma/client";
+import { allCategories, allTools } from "~/utils/mock";
 import { api } from "~/utils/api";
 
 export const HomePage: React.FC = () => {
   const [category, setCategory] = useState<Category | "all">("all");
 
   const allTools = api.tool.index.useQuery().data;
+  const allCategories = api.category.index.useQuery().data;
 
   const handleChangeCategory = (category: Category | "all") => {
     setCategory(category);
@@ -17,6 +19,7 @@ export const HomePage: React.FC = () => {
   return (
     <div className={style.inner}>
       <SideBar
+        allCategories={allCategories}
         selectedCategory={category}
         onClickButton={handleChangeCategory}
       />
@@ -30,9 +33,13 @@ export const HomePage: React.FC = () => {
             : category.description}
         </p>
         <div className={style.list}>
-          {allTools?.map((tool) => (
-            <Card key={tool.id} {...tool} />
-          ))}
+          {allTools
+            ?.filter((tool) =>
+              category === "all" ? tool : tool.category.id === category.id
+            )
+            .map((tool) => (
+              <Card key={tool.id} {...tool} />
+            ))}
         </div>
       </main>
     </div>
