@@ -1,12 +1,22 @@
-import { GetStaticProps, NextPage } from "next";
-import { createServerSideHelpers } from "@trpc/react-query/server";
-import { HomePage } from "~/components/pages/Home";
-import { api } from "~/utils/api";
-import { appRouter } from "~/server/api/root";
-import superjson from "superjson";
+import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
+import { HomePage, HomeProps } from "~/components/pages/Home";
+import { supabase } from "~/utils/supabase";
 
-const Home: NextPage = () => {
-  return <HomePage />;
+const Home: NextPage<HomeProps> = (props: HomeProps) => {
+  return (
+    <HomePage allTools={props.allTools} allCategories={props.allCategories} />
+  );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allTools = await supabase.from("Tool").select();
+  const allCategories = await supabase.from("Category").select();
+  return {
+    props: {
+      allTools: allTools.data,
+      allCategories: allCategories.data,
+    },
+  };
 };
 
 export default Home;

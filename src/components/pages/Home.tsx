@@ -2,15 +2,15 @@ import style from "~/styles/pages/Home.module.scss";
 import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
-import { Category } from "@prisma/client";
-import { allCategories, allTools } from "~/utils/mock";
-import { api } from "~/utils/api";
+import { Category, Tool } from "@prisma/client";
 
-export const HomePage: React.FC = () => {
+export type HomeProps = {
+  allTools: Tool[];
+  allCategories: Category[];
+};
+
+export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
   const [category, setCategory] = useState<Category | "all">("all");
-
-  const allTools = api.tool.index.useQuery().data;
-  const allCategories = api.category.index.useQuery().data;
 
   const handleChangeCategory = (category: Category | "all") => {
     setCategory(category);
@@ -35,7 +35,7 @@ export const HomePage: React.FC = () => {
         <div className={style.list}>
           {allTools
             ?.filter((tool) =>
-              category === "all" ? tool : tool.category.id === category.id
+              category === "all" ? tool : tool.categoryId === category.id
             )
             .map((tool) => (
               <Card key={tool.id} {...tool} />

@@ -2,17 +2,15 @@ import { useState } from "react";
 import style from "~/styles/pages/Admin.module.scss";
 import { api } from "~/utils/api";
 import { Category } from "@prisma/client";
+import { supabase } from "~/utils/supabase";
 
 export const AdminPage: React.FC = () => {
   const [toolName, setToolName] = useState<string>();
   const [iconURL, setIconURL] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [category, setCategory] = useState<Category>();
-
-  console.log(toolName);
-  console.log(iconURL);
-  console.log(description);
-  console.log(category);
+  const [provider, setProvider] = useState<string>();
+  const [url, setURL] = useState<string>();
 
   const allCategories = api.category.index.useQuery().data;
 
@@ -26,18 +24,48 @@ export const AdminPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (!toolName || !iconURL || !description || !category || !provider || !url)
+      return;
+    await supabase
+      .from("Tool")
+      .insert({
+        name: toolName,
+        icon: iconURL,
+        description: description,
+        provider: provider,
+        categoryId: category.id,
+        url: url,
+      })
+      .then((data) => {});
+  };
 
   return (
     <main className={style.inner}>
       <h1 className={style.heading}>管理画面</h1>
 
-      <form className={style.form}>
+      <div className={style.form}>
         <label className={style.item}>
           <span>ツール名</span>
           <input
             type="text"
             onChange={(e) => setToolName(e.target.value)}
+            required
+          />
+        </label>
+        <label className={style.item}>
+          <span>提供者</span>
+          <input
+            type="text"
+            onChange={(e) => setProvider(e.target.value)}
+            required
+          />
+        </label>
+        <label className={style.item}>
+          <span>URL</span>
+          <input
+            type="text"
+            onChange={(e) => setURL(e.target.value)}
             required
           />
         </label>
@@ -64,12 +92,23 @@ export const AdminPage: React.FC = () => {
           <input
             type="file"
             accept=".jpg,.png,.svg"
-            // onChange={(e) => uploadImage(e).then((url) => setIconURL(url))}
-            required
+            onChange={async (e) => {
+              if (!e.target.files || !e.target.files[0]) return;
+              const filename = e.target.value.replace(/^C:\\fakepath\\/, "");
+              const bucket = supabase.storage.from("tool_logo");
+              await bucket
+                .upload(filename, e.target.files[0])
+                .then(async ({ data }) => {
+                  if (!data) return;
+                  const url = await bucket.getPublicUrl(data.path);
+                  setIconURL(url.data.publicUrl);
+                });
+            }}
           />
+          {iconURL && <p>OK</p>}
         </label>
-        <button>登録</button>
-      </form>
+        <button onClick={async () => await handleSubmit()}>登録</button>
+      </div>
     </main>
   );
 };
