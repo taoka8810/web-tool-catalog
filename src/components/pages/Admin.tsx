@@ -3,6 +3,7 @@ import style from "~/styles/pages/Admin.module.scss";
 import { api } from "~/utils/api";
 import { Category } from "@prisma/client";
 import { supabase } from "~/utils/supabase";
+import useSWR from "swr";
 
 export const AdminPage: React.FC = () => {
   const [toolName, setToolName] = useState<string>();
