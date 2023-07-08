@@ -19,7 +19,7 @@ export const Card: React.FC<CardProps> = (props) => {
       rel="noopener noreferrer"
     >
       <div className={style.image}>
-        <img src="/wordpress.png" alt="" />
+        <img src={props.image} alt="" />
       </div>
       <div className={style.info}>
         <h2 className={style.toolname}>{props.name}</h2>

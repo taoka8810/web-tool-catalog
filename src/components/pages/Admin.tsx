@@ -3,11 +3,9 @@ import style from "~/styles/pages/Admin.module.scss";
 import { api } from "~/utils/api";
 import { Category } from "@prisma/client";
 import { supabase } from "~/utils/supabase";
-import useSWR from "swr";
 
 export const AdminPage: React.FC = () => {
   const [toolName, setToolName] = useState<string>();
-  const [iconURL, setIconURL] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [category, setCategory] = useState<Category>();
   const [provider, setProvider] = useState<string>();
@@ -26,13 +24,11 @@ export const AdminPage: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    if (!toolName || !iconURL || !description || !category || !provider || !url)
-      return;
+    if (!toolName || !description || !category || !provider || !url) return;
     await supabase
       .from("Tool")
       .insert({
         name: toolName,
-        icon: iconURL,
         description: description,
         provider: provider,
         categoryId: category.id,
@@ -87,26 +83,6 @@ export const AdminPage: React.FC = () => {
               </option>
             ))}
           </select>
-        </label>
-        <label className={style.item}>
-          <span>アイコン</span>
-          <input
-            type="file"
-            accept=".jpg,.png,.svg"
-            onChange={async (e) => {
-              if (!e.target.files || !e.target.files[0]) return;
-              const filename = e.target.value.replace(/^C:\\fakepath\\/, "");
-              const bucket = supabase.storage.from("tool_logo");
-              await bucket
-                .upload(filename, e.target.files[0])
-                .then(async ({ data }) => {
-                  if (!data) return;
-                  const url = await bucket.getPublicUrl(data.path);
-                  setIconURL(url.data.publicUrl);
-                });
-            }}
-          />
-          {iconURL && <p>OK</p>}
         </label>
         <button onClick={async () => await handleSubmit()}>登録</button>
       </div>

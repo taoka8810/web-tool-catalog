@@ -4,8 +4,10 @@ import { Card } from "../elements/Card";
 import { useState } from "react";
 import { Category, Tool } from "@prisma/client";
 
+type ToolWithImage = Tool & { image: string };
+
 export type HomeProps = {
-  allTools: Tool[];
+  allTools: ToolWithImage[];
   allCategories: Category[];
 };
 
