@@ -1,7 +1,6 @@
 @use "../globals/forward.scss" as *;
 
 .card {
-  padding: 15px;
   outline: 2px solid #171b21;
   border-radius: 7px;
   background-color: #0f1317;
@@ -15,27 +14,18 @@
   }
 }
 
-.head {
-  display: flex;
-  gap: 20px;
+.image {
+  > img {
+    width: 100%;
+    border-radius: 7px 7px 0 0;
+    aspect-ratio: 1200/630;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: white;
-  box-sizing: border-box;
-
-  > img {
-    width: 35px;
-    height: 35px;
-    object-fit: contain;
-  }
+.info {
+  padding: 15px;
 }
 
 .toolname {

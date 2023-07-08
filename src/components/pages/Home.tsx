@@ -29,7 +29,7 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
         </h1>
         <p className={style.description}>
           {category === "all"
-            ? "ウェブ開発に役立つサービスやツールを紹介するポ ータルサイト"
+            ? "ウェブ開発に役立つサービスやツールを紹介するポータルサイト"
             : category.description}
         </p>
         <div className={style.list}>

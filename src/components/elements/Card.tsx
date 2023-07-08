@@ -6,7 +6,7 @@ type CardProps = {
   name: string;
   provider: string;
   description: string;
-  icon: string;
+  image: string;
   url: string;
 };
 
@@ -18,16 +18,14 @@ export const Card: React.FC<CardProps> = (props) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className={style.head}>
-        <div className={style.icon}>
-          <img src={props.icon} alt="logo" width={35} height={35} />
-        </div>
-        <div>
-          <h2 className={style.toolname}>{props.name}</h2>
-          <p className={style.provider}>{`by ${props.provider}`}</p>
-        </div>
+      <div className={style.image}>
+        <img src="/wordpress.png" alt="" />
       </div>
-      <p className={style.description}>{props.description}</p>
+      <div className={style.info}>
+        <h2 className={style.toolname}>{props.name}</h2>
+        <p className={style.provider}>{`by ${props.provider}`}</p>
+        <p className={style.description}>{props.description}</p>
+      </div>
     </a>
   );
 };
