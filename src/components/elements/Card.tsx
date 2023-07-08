@@ -19,7 +19,12 @@ export const Card: React.FC<CardProps> = (props) => {
       rel="noopener noreferrer"
     >
       <div className={style.image}>
-        <img src={props.image} alt="" />
+        <Image
+          src={props.image}
+          alt="eyecatch"
+          width={288.98}
+          height={151.71}
+        />
       </div>
       <div className={style.info}>
         <h2 className={style.toolname}>{props.name}</h2>
