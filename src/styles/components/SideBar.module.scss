@@ -1,9 +1,14 @@
 @use "../globals/forward.scss" as *;
 
 .sidebar {
+  position: fixed;
   width: 264px;
 
   @include md {
+    display: none;
+    top: 0;
+    right: 0;
+    left: 0;
     width: 100%;
   }
 }
@@ -12,6 +17,7 @@
   padding: 10px 5px;
   border: #6b7480 solid 1px;
   border-radius: 7px;
+  background-color: #090b0d;
 }
 
 .category {

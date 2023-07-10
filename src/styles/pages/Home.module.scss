@@ -1,11 +1,10 @@
 @use "../globals/forward.scss" as *;
 
 .inner {
-  display: flex;
-  gap: 24px;
   padding: 50px 30px;
   margin: 0 auto;
   max-width: 1280px;
+  box-sizing: border-box;
 
   @include md {
     flex-direction: column;
@@ -14,10 +13,13 @@
 }
 
 .main {
-  width: calc(100% - 264px);
+  margin-left: 288px;
+  width: calc(100% - 288px);
 
   @include md {
+    margin: 0 auto;
     width: 100%;
+    max-width: 450px;
   }
 }
 
