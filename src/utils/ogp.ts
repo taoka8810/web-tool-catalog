@@ -11,9 +11,25 @@ export const getOGPImage = async (url: string) => {
         const ogImagePattern =
           /<meta\s+property=\"og:image\"\s+content=\"([^\"]+)\"/i;
         const ogImageMatch = html.match(ogImagePattern);
-        const ogImage = ogImageMatch ? ogImageMatch[1] : dummyImageURL;
+        const ogImage = ogImageMatch ? ogImageMatch[1] : undefined;
 
-        return ogImage ? ogImage : dummyImageURL;
+        // 文字列からog:imageのcontentを正規表現で取得
+        const ogTwitterImagePattern =
+          /<meta\s+property=\"twitter:image\"\s+content=\"([^\"]+)\"/i;
+        const ogTwitterImageMatch = html.match(ogTwitterImagePattern);
+        const ogTwitterImage = ogTwitterImageMatch
+          ? ogTwitterImageMatch[1]
+          : undefined;
+
+        console.log(ogImage);
+
+        if (ogImage) {
+          return ogImage;
+        } else if (ogTwitterImage) {
+          return ogTwitterImage;
+        } else {
+          return dummyImageURL;
+        }
       })
       .catch((e) => {
         return dummyImageURL;
