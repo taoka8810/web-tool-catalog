@@ -3,6 +3,7 @@ import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
 import { Category, Tool } from "@prisma/client";
+import { Hamburger } from "../elements/Hamburger";
 
 type ToolWithImage = Tool & { image: string };
 
@@ -20,6 +21,13 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
 
   return (
     <div className={style.inner}>
+      <div className={style.hamburger}>
+        <Hamburger
+          allCategories={allCategories}
+          selectedCategory={category}
+          onClickButton={handleChangeCategory}
+        />
+      </div>
       <SideBar
         allCategories={allCategories}
         selectedCategory={category}
