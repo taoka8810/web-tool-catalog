@@ -10,9 +10,12 @@
     "update schema": "yarn supabase gen types typescript --linkd > ./supabase/schema.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.0.0",
     "@supabase/supabase-js": "^2.26.0",
+    "deepl-node": "^1.10.2",
     "metagros": "^0.1.8",
     "next": "^13.4.2",
+    "prisma": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.63.5",
