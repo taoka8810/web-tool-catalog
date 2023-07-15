@@ -136,6 +136,32 @@
       rgba(233, 240, 250, 1)
     );
   }
+
+  &[data-type="Special"] {
+    animation: bg-color-animation 2s linear infinite;
+  }
+}
+
+@keyframes bg-color-animation {
+  0% {
+    background-color: red;
+  }
+
+  20% {
+    background-color: yellow;
+  }
+
+  40% {
+    background-color: greenyellow;
+  }
+
+  80% {
+    background-color: blue;
+  }
+
+  100% {
+    background-color: purple;
+  }
 }
 
 .toolname {
