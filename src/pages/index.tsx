@@ -15,7 +15,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const allTools = await supabase.from("tool").select(`
     id,
     name,
-    provider,
     url,
     category ( id, name, slug )
   `);
