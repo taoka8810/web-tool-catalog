@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Hamburger } from "../elements/Hamburger";
 import { Category, ToolWithOGP } from "~/utils/types";
 import { WelcomeMessage } from "../elements/WelcomeMessage";
+import { Footer } from "../elements/Footer";
 
 export type HomeProps = {
   allTools: ToolWithOGP[];
@@ -65,6 +66,7 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
             ))}
           <Card {...PennnInfo} />
         </div>
+        <Footer />
       </main>
     </div>
   );
