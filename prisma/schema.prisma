@@ -18,12 +18,10 @@ model category {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model tool {
-  id          Int      @id(map: "Tool_pkey") @default(autoincrement())
-  name        String
-  description String
-  provider    String
-  url         String
-  categoryId  Int
-  createdAt   DateTime @default(now())
-  category    category @relation(fields: [categoryId], references: [id], onUpdate: NoAction)
+  id         Int      @id(map: "Tool_pkey") @default(autoincrement())
+  name       String
+  url        String
+  categoryId Int
+  createdAt  DateTime @default(now())
+  category   category @relation(fields: [categoryId], references: [id], onUpdate: NoAction)
 }
