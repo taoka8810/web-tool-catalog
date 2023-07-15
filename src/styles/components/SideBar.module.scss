@@ -31,12 +31,12 @@
   font-size: 16px;
   font-weight: 700;
   color: #9ba6b1;
-  transition: 0.2s;
   cursor: pointer;
 
   &:hover {
     color: #c16e71;
     background-color: #220306;
+    transition: 0.2s;
   }
 }
 

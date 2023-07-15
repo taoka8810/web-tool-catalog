@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import { HomePage, HomeProps } from "~/components/pages/Home";
 import { getOGPImage } from "~/utils/ogp";
+import { shuffleArray } from "~/utils/shuffleArray";
 import { supabase } from "~/utils/supabase";
 
 const Home: NextPage<HomeProps> = (props: HomeProps) => {
@@ -37,7 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allTools: allToolsWithOGP,
+      allTools: shuffleArray(allToolsWithOGP),
       allCategories: allCategories.data,
     },
   };
