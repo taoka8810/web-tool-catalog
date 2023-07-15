@@ -1,5 +1,5 @@
-import { Category } from "@prisma/client";
 import style from "~/styles/components/SideBar.module.scss";
+import { Category } from "~/utils/types";
 
 type SideBarProps = {
   allCategories?: Category[];

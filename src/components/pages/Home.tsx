@@ -2,22 +2,11 @@ import style from "~/styles/pages/Home.module.scss";
 import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
-import { Category, Tool } from "@prisma/client";
 import { Hamburger } from "../elements/Hamburger";
+import { Category, ToolWithOGP } from "~/utils/types";
 
 export type HomeProps = {
-  allTools: {
-    id: number;
-    name: string;
-    description: string;
-    url: string;
-    category: {
-      id: number;
-      name: string;
-      slug: string;
-    };
-    image: string;
-  }[];
+  allTools: ToolWithOGP[];
   allCategories: Category[];
 };
 

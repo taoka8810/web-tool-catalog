@@ -1,6 +1,6 @@
-import { Category } from "@prisma/client";
 import { useState } from "react";
 import style from "~/styles/components/Hamburger.module.scss";
+import { Category } from "~/utils/types";
 
 type HamburgerProps = {
   allCategories?: Category[];

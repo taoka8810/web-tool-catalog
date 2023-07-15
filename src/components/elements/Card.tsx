@@ -1,17 +1,8 @@
 import Image from "next/image";
 import style from "~/styles/components/Card.module.scss";
+import { ToolWithOGP } from "~/utils/types";
 
-type CardProps = {
-  name: string;
-  description: string;
-  image: string;
-  url: string;
-  category: {
-    id: number;
-    name: string;
-    slug: string;
-  };
-};
+type CardProps = ToolWithOGP;
 
 export const Card: React.FC<CardProps> = (props) => {
   return (
