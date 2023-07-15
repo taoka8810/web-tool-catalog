@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,21 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Tool {
-  id          Int      @id @default(autoincrement())
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model category {
+  id          Int    @id(map: "Category_pkey") @default(autoincrement())
   name        String
+  slug        String @unique(map: "Category_slug_key")
   description String
-  provider    String
-  url         String
-  categoryId  Int
-  createdAt   DateTime @default(now())
-  category    Category @relation(fields: [categoryId], references: [id])
+  tool        tool[]
 }
 
-model Category {
-  id          Int    @id @default(autoincrement())
-  name        String
-  slug        String @unique
-  description String
-  tool        Tool[]
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model tool {
+  id         Int      @id(map: "Tool_pkey") @default(autoincrement())
+  name       String
+  url        String
+  categoryId Int
+  createdAt  DateTime @default(now())
+  category   category @relation(fields: [categoryId], references: [id], onUpdate: NoAction)
 }

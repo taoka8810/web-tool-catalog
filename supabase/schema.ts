@@ -34,7 +34,7 @@ export interface Database {
   };
   public: {
     Tables: {
-      Category: {
+      category: {
         Row: {
           description: string;
           id: number;
@@ -55,7 +55,7 @@ export interface Database {
         };
         Relationships: [];
       };
-      Tool: {
+      tool: {
         Row: {
           categoryId: number;
           createdAt: string;
@@ -85,9 +85,9 @@ export interface Database {
         };
         Relationships: [
           {
-            foreignKeyName: "Tool_categoryId_fkey";
+            foreignKeyName: "tool_categoryId_fkey";
             columns: ["categoryId"];
-            referencedRelation: "Category";
+            referencedRelation: "category";
             referencedColumns: ["id"];
           }
         ];

@@ -2,13 +2,12 @@ import style from "~/styles/pages/Home.module.scss";
 import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
-import { Category, Tool } from "@prisma/client";
 import { Hamburger } from "../elements/Hamburger";
-
-type ToolWithImage = Tool & { image: string };
+import { Category, ToolWithOGP } from "~/utils/types";
+import { WelcomeMessage } from "../elements/WelcomeMessage";
 
 export type HomeProps = {
-  allTools: ToolWithImage[];
+  allTools: ToolWithOGP[];
   allCategories: Category[];
 };
 
@@ -34,18 +33,17 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
         onClickButton={handleChangeCategory}
       />
       <main className={style.main}>
+        <WelcomeMessage />
         <h1 className={style.heading}>
           {category === "all" ? "All Tools" : category.name}
         </h1>
         <p className={style.description}>
-          {category === "all"
-            ? "ウェブ開発に役立つサービスやツールを紹介するポータルサイト"
-            : category.description}
+          {category === "all" ? "" : category.description}
         </p>
         <div className={style.list}>
           {allTools
             ?.filter((tool) =>
-              category === "all" ? tool : tool.categoryId === category.id
+              category === "all" ? tool : tool.category.id === category.id
             )
             .map((tool) => (
               <Card key={tool.id} {...tool} />

@@ -1,7 +1,9 @@
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import { HomePage, HomeProps } from "~/components/pages/Home";
 import { getOGPImage } from "~/utils/ogp";
+import { shuffleArray } from "~/utils/shuffleArray";
 import { supabase } from "~/utils/supabase";
+import { translateDescription } from "~/utils/translate";
 
 const Home: NextPage<HomeProps> = (props: HomeProps) => {
   return (
@@ -10,18 +12,26 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allTools = await supabase.from("Tool").select();
-  const allCategories = await supabase.from("Category").select();
+  const allTools = await supabase.from("tool").select(`
+    id,
+    name,
+    url,
+    category ( id, name, slug )
+  `);
+  const allCategories = await supabase.from("category").select();
 
-  // ToolsのurlからOGP画像を取得する
   if (!allTools.data) {
-    throw Error;
+    throw new Error("エラーwwwww ");
   }
-  const allToolsWithOGP = await Promise.all(
+
+  // OGP画像の取得とdescriptionの翻訳
+  const allToolData = await Promise.all(
     allTools.data.map(async (tool) => {
       const image = await getOGPImage(tool.url);
+      const description = await translateDescription(tool.url);
       return {
         ...tool,
+        description: description,
         image: image,
       };
     })
@@ -29,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allTools: allToolsWithOGP,
+      allTools: shuffleArray(allToolData),
       allCategories: allCategories.data,
     },
   };

@@ -31,6 +31,7 @@
   border: #121519 solid 1px;
   background-color: #0d1012;
   transition: 0.3s;
+  z-index: 100;
 }
 
 .menu[data-is-open="true"] {

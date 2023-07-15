@@ -1,14 +1,8 @@
 import Image from "next/image";
 import style from "~/styles/components/Card.module.scss";
-import useSWR from "swr";
+import { ToolWithOGP } from "~/utils/types";
 
-type CardProps = {
-  name: string;
-  provider: string;
-  description: string;
-  image: string;
-  url: string;
-};
+type CardProps = ToolWithOGP;
 
 export const Card: React.FC<CardProps> = (props) => {
   return (
@@ -28,7 +22,9 @@ export const Card: React.FC<CardProps> = (props) => {
       </div>
       <div className={style.info}>
         <h2 className={style.toolname}>{props.name}</h2>
-        <p className={style.provider}>{`by ${props.provider}`}</p>
+        <p className={style.category} data-type={props.category.slug}>
+          {props.category.slug}
+        </p>
         <p className={style.description}>{props.description}</p>
       </div>
     </a>
