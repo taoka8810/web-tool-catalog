@@ -5,10 +5,19 @@ import { useState } from "react";
 import { Category, Tool } from "@prisma/client";
 import { Hamburger } from "../elements/Hamburger";
 
-type ToolWithImage = Tool & { image: string };
-
 export type HomeProps = {
-  allTools: ToolWithImage[];
+  allTools: {
+    id: number;
+    name: string;
+    description: string;
+    url: string;
+    category: {
+      id: number;
+      name: string;
+      slug: string;
+    };
+    image: string;
+  }[];
   allCategories: Category[];
 };
 
@@ -45,7 +54,7 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
         <div className={style.list}>
           {allTools
             ?.filter((tool) =>
-              category === "all" ? tool : tool.categoryId === category.id
+              category === "all" ? tool : tool.category.id === category.id
             )
             .map((tool) => (
               <Card key={tool.id} {...tool} />

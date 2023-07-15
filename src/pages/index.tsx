@@ -10,13 +10,21 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allTools = await supabase.from("Tool").select();
-  const allCategories = await supabase.from("Category").select();
+  const allTools = await supabase.from("tool").select(`
+    id,
+    name,
+    description,
+    provider,
+    url,
+    category ( id, name, slug )
+  `);
+  const allCategories = await supabase.from("category").select();
+
+  if (!allTools.data) {
+    throw new Error("エラーwwwww ");
+  }
 
   // ToolsのurlからOGP画像を取得する
-  if (!allTools.data) {
-    throw Error;
-  }
   const allToolsWithOGP = await Promise.all(
     allTools.data.map(async (tool) => {
       const image = await getOGPImage(tool.url);
