@@ -4,6 +4,7 @@ import { Card } from "../elements/Card";
 import { useState } from "react";
 import { Hamburger } from "../elements/Hamburger";
 import { Category, ToolWithOGP } from "~/utils/types";
+import { WelcomeMessage } from "../elements/WelcomeMessage";
 
 export type HomeProps = {
   allTools: ToolWithOGP[];
@@ -32,13 +33,12 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
         onClickButton={handleChangeCategory}
       />
       <main className={style.main}>
+        <WelcomeMessage />
         <h1 className={style.heading}>
           {category === "all" ? "All Tools" : category.name}
         </h1>
         <p className={style.description}>
-          {category === "all"
-            ? "ウェブ開発に役立つサービスやツールを紹介するポータルサイトです"
-            : category.description}
+          {category === "all" ? "" : category.description}
         </p>
         <div className={style.list}>
           {allTools
