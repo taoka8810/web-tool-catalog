@@ -13,6 +13,41 @@
   }
 }
 
+.search {
+  position: relative;
+  margin-bottom: 12px;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - (15px / 2));
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    background-image: url("/magnifying-glass-solid.svg");
+  }
+
+  @include md {
+    display: none;
+  }
+}
+
+.search input {
+  display: block;
+  box-sizing: border-box;
+  padding: 12px 15px 12px 50px;
+  width: 100%;
+  background-color: transparent;
+  border: #6b7480 solid 1px;
+  border-radius: 7px;
+  color: white;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
 .categories {
   padding: 10px 5px;
   border: #6b7480 solid 1px;
