@@ -110,6 +110,58 @@
       #e52d27
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
+  &[data-type="Framework"] {
+    color: #171b21;
+    background: #c6ffdd; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #f7797d,
+      #fbd786,
+      #c6ffdd
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #f7797d,
+      #fbd786,
+      #c6ffdd
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  &[data-type="Build"] {
+    color: #171b21;
+    background-image: linear-gradient(
+      90deg,
+      rgba(168, 202, 240, 1),
+      rgba(233, 240, 250, 1)
+    );
+  }
+
+  &[data-type="Special"] {
+    animation: bg-color-animation 2s linear infinite;
+  }
+}
+
+@keyframes bg-color-animation {
+  0% {
+    background-color: red;
+  }
+
+  20% {
+    background-color: yellow;
+  }
+
+  40% {
+    background-color: greenyellow;
+  }
+
+  80% {
+    background-color: blue;
+  }
+
+  100% {
+    background-color: purple;
+  }
 }
 
 .toolname {

@@ -1,0 +1,48 @@
+@use "../globals/forward.scss" as *;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 0 30px;
+
+  @include md {
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+  }
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.copyright {
+  position: relative;
+  color: #abb5bf;
+  font-size: 12px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 5px);
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    background-image: url("/copyright-regular.svg");
+    background-position: center center;
+    background-size: contain;
+  }
+}
+
+.favicon {
+  color: #abb5bf;
+  font-size: 12px;
+
+  > small a {
+    color: #abb5bf;
+  }
+}
