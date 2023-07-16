@@ -34,16 +34,6 @@ export default function Document() {
         <meta property="og:site_name" content="Web Tool Portal" />
         <meta property="og:image" content="/ogp.png" />
         <title>Web Tool Portal</title>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-D7KH36BXHW" />
-        <Script id="google-analytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-D7KH36BXHW');
-        `}
-        </Script>
       </Head>
       <body>
         <Main />
