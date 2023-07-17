@@ -7,7 +7,7 @@ export const translateDescription = async (url: string) => {
 
   if (isProduction === "true") {
     const originalDescription = await getPageOGPMetadata(url);
-    if (!originalDescription.description) return "";
+    if (!originalDescription.description) return " ";
     const translatedDescription = await translator.translateText(
       originalDescription.description,
       null,
