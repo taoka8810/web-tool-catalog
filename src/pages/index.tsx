@@ -27,9 +27,9 @@ export const getStaticProps: GetStaticProps = async () => {
   // OGP画像の取得とdescriptionの翻訳
   const allToolData = await Promise.all(
     allTools.data.map(async (tool) => {
-      console.log(tool.id);
       const image = await getOGPImage(tool.url);
       const description = await translateDescription(tool.url);
+      console.log(tool.id);
       return {
         ...tool,
         description: description,
