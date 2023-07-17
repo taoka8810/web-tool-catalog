@@ -15,11 +15,11 @@ export const translateDescription = async (url: string) => {
     ? metaDescription
     : ogpDescription
     ? ogpDescription
-    : "";
+    : undefined;
 
   // Deepl APIの文字数制限の節約のため、本番環境以外では翻訳処理をしない
   const isProduction = process.env.IS_PRODUCTION;
-  if (isProduction === "true") {
+  if (isProduction === "true" && originalDescription) {
     const translatedDescription = await translator.translateText(
       originalDescription,
       null,
@@ -27,6 +27,6 @@ export const translateDescription = async (url: string) => {
     );
     return translatedDescription.text;
   } else {
-    return originalDescription;
+    return originalDescription ? originalDescription : "";
   }
 };
