@@ -1,4 +1,4 @@
-import { getPageOGPMetadata } from "metagros/move/cometPunch";
+import { getOGP } from "ogp-getter";
 import { translator } from "./deepl";
 
 export const translateDescription = async (url: string) => {
@@ -6,7 +6,7 @@ export const translateDescription = async (url: string) => {
   const isProduction = process.env.IS_PRODUCTION;
 
   if (isProduction === "true") {
-    const originalDescription = await getPageOGPMetadata(url);
+    const originalDescription = await getOGP(url);
     if (!originalDescription.description) return " ";
     const translatedDescription = await translator.translateText(
       originalDescription.description,
