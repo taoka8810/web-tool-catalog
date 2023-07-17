@@ -17,8 +17,6 @@ export const translateDescription = async (url: string) => {
     ? ogpDescription
     : undefined;
 
-  console.log(originalDescription);
-
   // Deepl APIの文字数制限の節約のため、本番環境以外では翻訳処理をしない
   const isProduction = process.env.IS_PRODUCTION;
   if (isProduction === "true" && originalDescription) {
