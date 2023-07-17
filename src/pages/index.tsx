@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allTools: shuffleArray(allToolData),
+      allTools: allToolData,
       allCategories: allCategories.data,
     },
   };
