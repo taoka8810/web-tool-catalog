@@ -17,19 +17,16 @@ export const translateDescription = async (url: string) => {
     ? ogpDescription
     : undefined;
 
-    // Deepl APIの文字数制限の節約のため、本番環境以外では翻訳処理をしない
-    const isProduction = process.env.IS_PRODUCTION;
-    if (isProduction === "true" && originalDescription) {
-      const translatedDescription = await translator.translateText(
-        originalDescription,
-        null,
-        "ja"
-      );
-      return translatedDescription.text;
-    } else {
-      return originalDescription ? originalDescription : "";
-    }
-  } catch {
-    throw new Error(url);
+  // Deepl APIの文字数制限の節約のため、本番環境以外では翻訳処理をしない
+  const isProduction = process.env.IS_PRODUCTION;
+  if (isProduction === "true" && originalDescription) {
+    const translatedDescription = await translator.translateText(
+      originalDescription,
+      null,
+      "ja"
+    );
+    return translatedDescription.text;
+  } else {
+    return originalDescription ? originalDescription : "";
   }
 };
