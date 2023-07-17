@@ -3,6 +3,7 @@ import { translator } from "./deepl";
 import { getOGP } from "ogp-getter";
 
 export const translateDescription = async (url: string) => {
+  console.log(url);
   // メタデータ取得
   const meta = await metaFetcher(url);
   const ogp = await getOGP(url);
