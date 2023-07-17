@@ -1,20 +1,32 @@
-import { getOGP } from "ogp-getter";
+import metaFetcher from "meta-fetcher";
 import { translator } from "./deepl";
+import { getOGP } from "ogp-getter";
 
 export const translateDescription = async (url: string) => {
-  // Deepl APIの文字数制限の節約のため、本番環境以外ではダミーテキストを返す
-  const isProduction = process.env.IS_PRODUCTION;
+  // メタデータ取得
+  const meta = await metaFetcher(url);
+  const ogp = await getOGP(url);
 
+  // 変数に格納
+  const metaDescription = meta.metadata.description;
+  const ogpDescription = ogp.description;
+
+  const originalDescription = metaDescription
+    ? metaDescription
+    : ogpDescription
+    ? ogpDescription
+    : "";
+
+  // Deepl APIの文字数制限の節約のため、本番環境以外では翻訳処理をしない
+  const isProduction = process.env.IS_PRODUCTION;
   if (isProduction === "true") {
-    const originalDescription = await getOGP(url);
-    if (!originalDescription.description) return " ";
     const translatedDescription = await translator.translateText(
-      originalDescription.description,
+      originalDescription,
       null,
       "ja"
     );
     return translatedDescription.text;
   } else {
-    return "【ダミー】Prismicはヘッドレス・ウェブサイト・ビルダーであり、開発者やマーケティング担当者は、より速く出荷し、反復し、より良いサイトを構築することができます。";
+    return originalDescription;
   }
 };
