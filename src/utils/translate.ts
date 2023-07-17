@@ -26,8 +26,10 @@ export const translateDescription = async (url: string) => {
       null,
       "ja"
     );
+    console.log("OK");
     return translatedDescription.text;
   } else {
+    console.log("OK");
     return originalDescription ? originalDescription : "";
   }
 };
