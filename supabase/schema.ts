@@ -59,28 +59,25 @@ export interface Database {
         Row: {
           categoryId: number;
           createdAt: string;
-          description: string;
           id: number;
           name: string;
-          provider: string;
+          order: number | null;
           url: string;
         };
         Insert: {
           categoryId: number;
           createdAt?: string;
-          description: string;
           id?: number;
           name: string;
-          provider: string;
+          order?: number | null;
           url: string;
         };
         Update: {
           categoryId?: number;
           createdAt?: string;
-          description?: string;
           id?: number;
           name?: string;
-          provider?: string;
+          order?: number | null;
           url?: string;
         };
         Relationships: [
