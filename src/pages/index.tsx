@@ -16,6 +16,7 @@ export const getStaticProps: GetStaticProps = async () => {
     id,
     name,
     url,
+    order,
     category ( id, name, slug )
   `);
   const allCategories = await supabase.from("category").select();

@@ -3,7 +3,7 @@ import { SideBar } from "../elements/SideBar";
 import { Card } from "../elements/Card";
 import { useState } from "react";
 import { Hamburger } from "../elements/Hamburger";
-import { Category, ToolWithOGP } from "~/utils/types";
+import { Category, Tool, ToolWithOGP } from "~/utils/types";
 import { WelcomeMessage } from "../elements/WelcomeMessage";
 import { Footer } from "../elements/Footer";
 
@@ -19,19 +19,8 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
     setCategory(category);
   };
 
-  // Pennnの情報
-  const PennnInfo = {
-    id: 0,
-    name: "Pennn",
-    description: "本サイト開発者が運営する技術ブログ。コンテンツはほぼない。",
-    url: "https://pennn.me",
-    image: "http://pennn.me/wp-content/uploads/2023/01/screenshot.png",
-    category: {
-      id: 0,
-      name: "Special",
-      slug: "Special",
-      description: "",
-    },
+  const orderArray = (prev: Tool, next: Tool) => {
+    return next.order - prev.order;
   };
 
   return (
@@ -61,10 +50,10 @@ export const HomePage: React.FC<HomeProps> = ({ allTools, allCategories }) => {
             ?.filter((tool) =>
               category === "all" ? tool : tool.category.id === category.id
             )
+            .sort(orderArray)
             .map((tool) => (
               <Card key={tool.id} {...tool} />
             ))}
-          <Card {...PennnInfo} />
         </div>
         <Footer />
       </main>

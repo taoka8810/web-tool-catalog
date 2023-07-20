@@ -3,6 +3,7 @@ export type Tool = {
   name: string;
   description: string;
   url: string;
+  order: number;
   category: Category;
 };
 
