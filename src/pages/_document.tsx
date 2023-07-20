@@ -17,23 +17,23 @@ export default function Document() {
         />
         <meta
           name="description"
-          content="Web Tool PortalはWeb開発でよく利用される、CMS、データベース、ストレージ、ホスティングなどのサービスやツールを一覧で紹介するポータルサイトです。"
+          content="Web Tool CatalogはWeb開発でよく利用される、CMS、データベース、ストレージ、ホスティングなどのサービスやツールを一覧で紹介するポータルサイトです。"
         />
         <meta name="keywords" content="web,一覧,ポータルサイト,ツール" />
         <meta name="author" content="taoka8810" />
-        <meta property="og:url" content="https://web-tool-portal.com" />
+        <meta property="og:url" content="https://web-tool-catalog.com" />
         <meta
           property="og:title"
-          content="Web Tool Portal | Web開発に役立つツール・サービスの一覧サイト"
+          content="Web Tool Catalog | Web開発に役立つツール・サービスの一覧サイト"
         />
         <meta
           property="og:description"
-          content="Web Tool PortalはWeb開発でよく利用される、CMS、データベース、ストレージ、ホスティングなどのサービスやツールを一覧で紹介するポータルサイトです。"
+          content="Web Tool CatalogはWeb開発でよく利用される、CMS、データベース、ストレージ、ホスティングなどのサービスやツールを一覧で紹介するポータルサイトです。"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Web Tool Portal" />
+        <meta property="og:site_name" content="Web Tool Catalog" />
         <meta property="og:image" content="/ogp.png" />
-        <title>Web Tool Portal</title>
+        <title>Web Tool Catalog</title>
       </Head>
       <body>
         <Main />

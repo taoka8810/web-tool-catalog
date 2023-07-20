@@ -7,7 +7,7 @@ export const WelcomeMessage: React.FC = () => {
   return (
     isVisible && (
       <div className={style.heading}>
-        <h1>Web Tool Portal</h1>
+        <h1>Web Tool Catalog</h1>
         <p>
           このサイトではWeb開発でよく利用されるツールやサービスを紹介しています。未知なるツールやサービスと出会うことで、より良いWeb開発のきっかけとなれれば幸いです。
         </p>
