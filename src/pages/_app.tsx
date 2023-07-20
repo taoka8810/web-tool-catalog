@@ -8,7 +8,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Script
         async
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-D7KH36BXHW`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-J1BK4GFXVN`}
       />
       <Script
         id="gtag-init"
@@ -19,7 +19,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           
-          gtag('config', 'G-D7KH36BXHW');
+          gtag('config', 'G-J1BK4GFXVN');
           `,
         }}
       />
